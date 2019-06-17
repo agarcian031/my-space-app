@@ -1,12 +1,26 @@
-import React from 'react';
-import './App.css';
+import React, {Fragment} from 'react'; 
+import Home from './components/layout/Home'; 
+import NoMatch from './components/layout/NoMatch'; 
+import Navbar from './components/layout/Navbar'; 
+// import Login from './components/layout/Login'; 
+// import Register from './components/layout/Register'; 
+import {Switch, Route} from 'react-router-dom'; 
+import {Container} from 'semantic-ui-react'; 
 
-function App() {
-  return (
-    <div className="App">
-    
-    </div>
-  );
-}
+const App = () => (
+  <Fragment> 
+    <Navbar/>
+    <Container>
+      <Switch>
+        <Route exact path="/" component={Home}/>
+        {/* <Route exact path="/login" component={Login}/> */}
+        {/* <Route exact path="/register" component={Register}/> */}
+        <Route component={NoMatch}/>
+      </Switch>
+    </Container>
+  </Fragment>
 
-export default App;
+)
+
+export default App
+
