@@ -5,6 +5,8 @@ import Navbar from './components/layout/Navbar';
 import Login from './components/layout/Login'; 
 import Register from './components/layout/Register'; 
 import FetchUser from './components/layout/FetchUser';
+import ProtectedRoute from './components/ProtectedRoute';
+
 
 import {Switch, Route} from 'react-router-dom'; 
 import {Container} from 'semantic-ui-react'; 
@@ -15,7 +17,7 @@ const App = () => (
     <FetchUser>
     <Container>
       <Switch>
-        <Route exact path="/" component={Home}/>
+        <ProtectedRoute exact path="/" component={Home}/>
         <Route exact path="/login" component={Login}/>
         <Route exact path="/register" component={Register}/>
         <Route component={NoMatch}/>
