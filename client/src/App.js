@@ -5,7 +5,7 @@ import Navbar from './components/layout/Navbar';
 import Login from './components/layout/Login'; 
 import Register from './components/layout/Register'; 
 import FetchUser from './components/layout/FetchUser';
-import ProtectedRoute from './components/ProtectedRoute';
+import ProtectedRoute from './components/layout/ProtectedRoute';
 
 
 import {Switch, Route} from 'react-router-dom'; 
