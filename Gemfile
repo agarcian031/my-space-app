@@ -34,7 +34,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-rails'
   gem "faker", :git => "https://github.com/stympy/faker.git", :branch => "master"
-
+  gem 'awesome_print' # use ap 
+gem 'table_print' #use tp 
 end
 
 group :development do
