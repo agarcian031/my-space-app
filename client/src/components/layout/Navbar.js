@@ -12,7 +12,7 @@ const Navbar = (props) => {
           <Link to="/my_accounts">
           <Menu.Item>
             {/* <Icon name="users"/> */}
-            My Friends
+            Activity
           </Menu.Item>
           </Link>
           <Menu.Item 
@@ -56,7 +56,7 @@ const Navbar = (props) => {
           <Menu.Item
           name="Home"
           active={props.location.pathname === "/"}>
-            <Icon name="home"/>
+            <Icon name="magnify"/> Discover
           </Menu.Item>
         </Link>
         { rightNavItems(auth)}
