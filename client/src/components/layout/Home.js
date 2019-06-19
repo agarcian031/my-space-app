@@ -1,11 +1,32 @@
-import React from 'react'; 
-import {Header, Container} from 'semantic-ui-react'; 
+import {Header, Container, Card, Image, Button, Icon} from 'semantic-ui-react'; 
+import React, { Component } from 'react'
+import axios from 'axios';
+ class Home extends Component {
+  state = {
+    users: [],
+  }
 
-const Home = () => (
-  <Container style={{padding: '25px 0'}}> 
-  <Header as="h1" textAlign="center">MySpace</Header>
-  <hr/>
-  </Container>
-)
+  componentDidMount() {
+    axios.get('/api/users')
+    .then(res => {
+      console.log(res)
+      // this.setState({users: res.data}) 
+    })
+    .catch( err => {
+      console.log(err); 
+    })
+  }
+  
 
-export default Home
+  render() {
+    return (
+      <Container style={{padding: '25px 0'}}> 
+      <Header as="h1" textAlign="center">MySpace</Header>
+      <hr/>
+      </Container>
+    )
+  }
+}
+
+export default Home; 
+

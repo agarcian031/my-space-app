@@ -6,4 +6,16 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
+
+  serialize :follow_accounts, Array 
+
+  def self.random_accounts(ids)
+    ids = ids.empty? ? [0] : ids 
+    Account.where("id NOT IN (?)", ids).order("RANDOM()")
+  end 
+
+  def self.follow(ids)
+    ids = ids.empty? ? [0] : ids 
+    Account.where("id IN (?)", ids)
+  end 
 end
