@@ -1,6 +1,6 @@
 import React, { Component } from 'react'; 
 import {AuthConsumer} from '../../providers/AuthProvider'; 
-import {Menu} from 'semantic-ui-react'; 
+import {Menu, Icon} from 'semantic-ui-react'; 
 import {Link, withRouter} from 'react-router-dom'; 
 
 const Navbar = (props) => {
@@ -9,6 +9,12 @@ const Navbar = (props) => {
     if (user) {
       return (
         <Menu.Menu position="right">
+          <Link to="/my_accounts">
+          <Menu.Item>
+            {/* <Icon name="users"/> */}
+            My Friends
+          </Menu.Item>
+          </Link>
           <Menu.Item 
             name="Logout"
             onClick={() => handleLogout(props.history)}
@@ -21,14 +27,17 @@ const Navbar = (props) => {
           <Link to="/login">
           <Menu.Item
           name="Login"
-          active={props.location.pathname === "/login"}
-          />
+          active={props.location.pathname === "/login"}>
+           <Icon name='user circle outline' />
+            Login
+          </Menu.Item>
           </Link>
           <Link to="/register">
           <Menu.Item
-          name="Register"
-          active={props.location.pathname === "/register"}
-          />
+          name="Sign Up"
+          active={props.location.pathname === "/register"}>
+            <Icon name="pencil"/> Sign Up
+          </Menu.Item>
           </Link>
         </Menu.Menu>
       )
@@ -38,12 +47,17 @@ const Navbar = (props) => {
   return (
     <AuthConsumer>
       {auth => 
-      <Menu pointing secondary>
+      <Menu stackable pointing secondary>
+        <Menu.Item>
+          <Icon name="users"/>|
+          MySpace
+        </Menu.Item>
         <Link to="/">
           <Menu.Item
           name="Home"
-          active={props.location.pathname === "/"}
-          />
+          active={props.location.pathname === "/"}>
+            <Icon name="home"/>
+          </Menu.Item>
         </Link>
         { rightNavItems(auth)}
       </Menu>
