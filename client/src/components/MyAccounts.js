@@ -2,8 +2,12 @@ import React, { Component, Fragment} from "react";
 import {Link } from 'react-router-dom';  
 import { Card, Feed, Divider, Button, Icon} from "semantic-ui-react";
 import axios from 'axios'; 
+import Moment from 'react-moment'; 
 
-// TODO: be able to remove/clear activity feed without removing people from DB 
+
+// TODO: be able to remove/clear activity feed
+// TODO: unfriend user.
+// pull ID from match.params
 
 export class MyAccounts extends Component {
   state = {
@@ -21,7 +25,10 @@ export class MyAccounts extends Component {
     return (
       <Card centered fluid>
         <Card.Content>
-          <Card.Header>Your Recent Activity</Card.Header>
+          <Card.Header style={{padding: '10px 0'}}>Now Following...</Card.Header>
+          {/* <Button icon circular floated="right" size="tiny"> 
+                  <Icon name="settings"/>
+                </Button> */}
         </Card.Content>
         <Card.Content>
           <Feed>
@@ -30,17 +37,19 @@ export class MyAccounts extends Component {
             <Feed.Event>
               <Feed.Label image={account.avatar} />
               <Feed.Content>
-                <Feed.Date content="Now Following" />
+                <Feed.Date><Moment format="MM/DD/YYYY">{account.created_at}</Moment></Feed.Date>
                 <Feed.Summary>
                   You added  
-                  <span> <Link to="/account_profile">
+                  <span> <Link to={`/account_profile/${account.id}`}>
                   {account.name} 
                   </Link> </span>
-                   to your friends list.
+                   to your follow list. 
+                   <br/>
+                   Click their name to view their profile. 
+                   <Button icon circular floated="right" size="tiny" color="red">
+                    <Icon name="trash"/>
+                   </Button>
                 </Feed.Summary>
-                <Button icon floated="right" size="tiny"> 
-                  <Icon name="erase"/>
-                </Button>
               </Feed.Content>
             </Feed.Event>
             <Divider/>

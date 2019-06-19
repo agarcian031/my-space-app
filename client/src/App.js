@@ -21,7 +21,7 @@ const App = () => (
       <Switch>
         <ProtectedRoute exact path="/" component={Home}/>
         <ProtectedRoute exact path="/my_accounts" component={MyAccounts}/>
-        <ProtectedRoute exact path="/account_profile" component={AccountProfile}/>
+        <ProtectedRoute exact path="/account_profile/:id" component={AccountProfile}/>
         <Route exact path="/login" component={Login}/>
         <Route exact path="/register" component={Register}/>
         <Route component={NoMatch}/>

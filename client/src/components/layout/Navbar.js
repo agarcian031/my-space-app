@@ -12,7 +12,7 @@ const Navbar = (props) => {
           <Link to="/my_accounts">
           <Menu.Item>
             {/* <Icon name="users"/> */}
-            Activity
+            Following
           </Menu.Item>
           </Link>
           <Menu.Item 
