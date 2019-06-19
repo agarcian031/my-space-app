@@ -7,6 +7,7 @@ import Register from './components/layout/Register';
 import FetchUser from './components/layout/FetchUser';
 import ProtectedRoute from './components/layout/ProtectedRoute';
 import MyAccounts from './components/MyAccounts'; 
+import AccountProfile from './components/AccountProfile'; 
 
 
 import {Switch, Route} from 'react-router-dom'; 
@@ -20,6 +21,7 @@ const App = () => (
       <Switch>
         <ProtectedRoute exact path="/" component={Home}/>
         <ProtectedRoute exact path="/my_accounts" component={MyAccounts}/>
+        <ProtectedRoute exact path="/account_profile" component={AccountProfile}/>
         <Route exact path="/login" component={Login}/>
         <Route exact path="/register" component={Register}/>
         <Route component={NoMatch}/>

@@ -1,6 +1,9 @@
-import React, { Component } from "react";
-import { Card, Feed } from "semantic-ui-react";
+import React, { Component, Fragment} from "react";
+import {Link } from 'react-router-dom';  
+import { Card, Feed, Divider, Button, Icon} from "semantic-ui-react";
 import axios from 'axios'; 
+
+// TODO: be able to remove/clear activity feed without removing people from DB 
 
 export class MyAccounts extends Component {
   state = {
@@ -23,15 +26,25 @@ export class MyAccounts extends Component {
         <Card.Content>
           <Feed>
             {accounts.map( account => 
+            <Fragment>
             <Feed.Event>
               <Feed.Label image={account.avatar} />
               <Feed.Content>
                 <Feed.Date content="Now Following" />
                 <Feed.Summary>
-                  You added {account.name} to your friends list.
+                  You added  
+                  <span> <Link to="/account_profile">
+                  {account.name} 
+                  </Link> </span>
+                   to your friends list.
                 </Feed.Summary>
+                <Button icon floated="right" size="tiny"> 
+                  <Icon name="erase"/>
+                </Button>
               </Feed.Content>
             </Feed.Event>
+            <Divider/>
+            </Fragment>
             )}
           </Feed>
         </Card.Content>
