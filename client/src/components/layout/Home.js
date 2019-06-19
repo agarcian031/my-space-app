@@ -1,32 +1,86 @@
-import {Header, Container, Card, Image, Button, Icon} from 'semantic-ui-react'; 
-import React, { Component } from 'react'
-import axios from 'axios';
- class Home extends Component {
+import { Header, Container, Card, Image, Button, Icon, Divider, CardContent } from "semantic-ui-react";
+import React, { Component } from "react";
+import axios from "axios";
+class Home extends Component {
   state = {
-    users: [],
-  }
+    accounts: []
+  };
 
   componentDidMount() {
-    axios.get('/api/users')
-    .then(res => {
-      console.log(res)
-      // this.setState({users: res.data}) 
-    })
-    .catch( err => {
-      console.log(err); 
-    })
+    axios
+      .get("/api/accounts")
+      .then((res) => {
+        // console.log(res.data)
+        this.setState({ accounts: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
+
+  // NOT GENERATING RANDOM SAMPLE 
+  // sample = () => {
+  //   const { accounts } = this.state;
+
+  //   if (accounts.length) {
+  //     const index = Math.floor(Math.random() * accounts.length);
+  //     return accounts[index];
+  //   } else {
+  //     return null;
+  //   }
+  // };
+
   
 
   render() {
-    return (
-      <Container style={{padding: '25px 0'}}> 
-      <Header as="h1" textAlign="center">MySpace</Header>
-      <hr/>
-      </Container>
-    )
+    // const account = this.sample();
+    const {accounts} = this.state
+    if (accounts) {
+      return (
+        <Container style={{ padding: "25px 0" }}>
+          <Header as="h1" textAlign="center">
+            Your Friend Suggestions
+          </Header>
+          <hr />
+          <br />
+          <Card.Group>
+            {accounts.map (account => 
+          <Card key={account.id} raised fluid>
+            <Card.Content>
+              <Card.Header>{account.name}</Card.Header>
+              <Divider/>
+              <Card.Meta>
+                Age: {account.age} |
+                Location: {account.location}
+              </Card.Meta>
+              <Image floated="left" size="tiny" circular src={account.avatar} />
+              <Card.Description textAlign="center">{account.bio}</Card.Description>
+            </Card.Content>
+            <Card.Content extra>
+              <Button.Group size="tiny" floated="right">
+              <Button color="green" icon basic>
+                <Icon name="plus" /> Follow
+              </Button>
+              <Button  color="red" icon basic>
+                <Icon name="minus" /> Unfollow
+              </Button>
+              </Button.Group>
+            </Card.Content>
+          </Card>
+          )}
+          </Card.Group>
+        </Container>
+      );
+    } else {
+      return <Header textAlign="center">You Have No Friends! </Header>;
+    }
   }
 }
 
-export default Home; 
+{/* <Link to="/my_cats">
+<Button color="blue">
+  My Cats
+</Button>
+</Link> */}
 
+export default Home;
