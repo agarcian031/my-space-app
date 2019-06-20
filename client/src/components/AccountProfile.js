@@ -10,17 +10,26 @@ export class AccountProfile extends Component {
       account: []
     }
 
+    // Nested axios request to get both account information and posts
     componentDidMount(id) {
       const account_id = this.props.match.params.id
       axios.get(`/api/accounts/${account_id}`)
       .then(res => {
-        this.setState({account: res.data})
+        this.setState({account: res.data}); 
+
+        return axios.get(`/api/accounts/${account_id}/posts`)
+        .then(res => {
+          this.setState({posts: res.data})
+        })
+      })
+      .catch(err => {
+        console.log(err)
       })
     }
     
 
   render() {
-    const {account} = this.state
+    const {account, posts} = this.state
     return (
       <Fragment>
         <Segment.Group horizontal>
@@ -43,6 +52,19 @@ export class AccountProfile extends Component {
             </Segment>
           </Segment.Group>
         </Segment>
+        </Segment.Group>
+        <Segment.Group raised> 
+          {posts.map(post => 
+            <Segment padded="very" key={post.id}>
+              <Segment raised>
+              <Header as="h3" textAlign="center">{post.title}</Header>
+              <Divider/>
+              <Segment tertiary>
+                {post.body}
+              </Segment>
+              </Segment>
+            </Segment>
+          )}
         </Segment.Group>
       </Fragment>
     )

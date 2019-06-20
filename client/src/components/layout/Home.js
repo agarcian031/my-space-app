@@ -90,7 +90,7 @@ class Home extends Component {
         </Container>
       );
     } else {
-      return <Header textAlign="center">You Have No Friends! </Header>;
+      return <Header textAlign="center">You Have No Suggestions! </Header>;
     }
   }
 }
