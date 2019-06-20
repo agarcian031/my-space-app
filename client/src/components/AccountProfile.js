@@ -62,6 +62,7 @@ export class AccountProfile extends Component {
             </Segment>
           </Segment.Group>
           <Segment.Group raised>
+            <Header as="h2" textAlign="center" style={{padding: '15px 0'}}>{account.name}'s Posts</Header>
             {posts.map((post) => (
               <Segment padded="very" key={post.id}>
                 <Segment raised>
