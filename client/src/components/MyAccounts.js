@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
+import Spinner from './layout/Spinner'; 
 import { Card, Feed, Divider, Button, Icon, Header } from "semantic-ui-react";
 import axios from "axios";
 import Moment from "react-moment";
@@ -26,7 +27,10 @@ export class MyAccounts extends Component {
 
   render() {
     const { accounts } = this.state;
-    if (accounts) {
+    if(accounts === undefined) {
+      return <Spinner/>
+    } 
+    else if (accounts) {
       return (
         <Card centered fluid>
           <Card.Content>
