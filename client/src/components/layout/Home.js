@@ -78,7 +78,7 @@ class Home extends Component {
                 </Button.Content>
               </Button>
               <Button  color="red" icon basic animated onClick={() => this.unfollowAccount(account.id)}>
-                <Button.Content visible>Unfollow</Button.Content>
+                <Button.Content visible>I don't want to see this</Button.Content>
                 <Button.Content hidden><Icon name="minus" /> </Button.Content>
                 
               </Button>

@@ -20,6 +20,11 @@ export class MyAccounts extends Component {
     });
   }
 
+  unfollowAccount = (id) => {
+    const {accounts} = this.state 
+    this.setState({accounts: accounts.filter(a => a.id !== id)})
+  }
+
   render() {
     const { accounts } = this.state;
     return (
@@ -33,22 +38,33 @@ export class MyAccounts extends Component {
         <Card.Content>
           <Feed>
             {accounts.map( account => 
-            <Fragment>
+            <Fragment key={account.id}>
             <Feed.Event>
               <Feed.Label image={account.avatar} />
               <Feed.Content>
                 <Feed.Date><Moment format="MM/DD/YYYY">{account.created_at}</Moment></Feed.Date>
                 <Feed.Summary>
                   You added  
-                  <span> <Link to={`/account_profile/${account.id}`}>
+                  {/* <span> <Link to={`/account_profile/${account.id}`}> */}
+                  <span> <Link to={{
+                    pathname: `/account_profile/${account.id}`, 
+                    state: {
+                      account_id: this.props.id
+                    }
+                    }}>
                   {account.name} 
                   </Link> </span>
                    to your follow list. 
                    <br/>
                    Click their name to view their profile. 
-                   <Button icon circular floated="right" size="tiny" color="red">
+                   {/* <Button icon circular floated="right" size="tiny" color="red">
                     <Icon name="trash"/>
-                   </Button>
+                   </Button> */}
+                   <Button  size="tiny" color="red" icon floated="right" animated onClick={() => this.unfollowAccount(account.id)}>
+                <Button.Content visible>Unfollow</Button.Content>
+                <Button.Content hidden><Icon name="minus" /> </Button.Content>
+                
+              </Button>
                 </Feed.Summary>
               </Feed.Content>
             </Feed.Event>
