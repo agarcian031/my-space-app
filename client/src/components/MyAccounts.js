@@ -22,7 +22,11 @@ export class MyAccounts extends Component {
 
   unfollowAccount = (id) => {
     const { accounts } = this.state;
-    this.setState({ accounts: accounts.filter((a) => a.id !== id) });
+    axios.put(`/api/unfollow_accounts/${id}`)
+    .then(res => {
+
+      this.setState({ accounts: accounts.filter((a) => a.id !== id) });
+    })
   };
 
   render() {

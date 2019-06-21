@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   def self.random_accounts(ids)
     ids = ids.empty? ? [0] : ids 
-    Account.where("id NOT IN (?)", ids).order("RANDOM()")
+    Account.where("id NOT IN (?)", ids)
   end 
 
   def self.follow(ids)

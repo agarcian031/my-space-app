@@ -18,4 +18,10 @@ class Api::AccountsController < ApplicationController
   def my_accounts 
     render json: User.follow(current_user.follow_accounts)
   end 
+
+  def unfollow_accounts
+    current_user.follow_accounts.delete(params[:id].to_i)
+    current_user.save
+  end
+
 end

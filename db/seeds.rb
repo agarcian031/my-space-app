@@ -8,14 +8,14 @@
 # end 
 
 # puts "20 Accounts Created"
-
+# set2 - robots 
 
 20.times do
   account = Account.create(
     name: Faker::Name.name, 
     age: Faker::Number.between(15, 100), 
     location: Faker::Address.city,
-    avatar: Faker::Avatar.image(Faker::Name.name, '100x200', 'png', 'set2'),
+    avatar: Faker::Avatar.image(Faker::Name.name, '100x200', 'png', 'set5'),
     bio: Faker::Lorem.paragraph
   )
     10.times do 
